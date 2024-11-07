@@ -6,7 +6,8 @@ public class Player {
     private boolean defended = false;
     private boolean silenced = false;
     private boolean doused = false;
-    Game gameObj = new Game();
+
+    public Game gameObj = new Game();
 
 
     public Player(String name){
@@ -16,16 +17,26 @@ public class Player {
     public static void main(String[] args){
     }
 
-    public String getName(){
-        return(this.name);
-    }
+
 
     private void setRole(Roles roleIn){
         this.role = roleIn;
     }
 
+    public String getName(){
+        return(this.name);
+    }
+
     public Roles getRole(){
         return this.role;
+    }
+
+    public boolean getAttacked(){
+        return(attacked);
+    }
+
+    public boolean getDefended(){
+        return(defended);
     }
 
     private void attack(){
@@ -36,7 +47,7 @@ public class Player {
         this.defended = true;
     }
 
-    private void kill(){
+    public void kill(){
         this.alive = false;
     }
 
@@ -89,7 +100,7 @@ public class Player {
     }
 
     private void nightActionSorcerer(Player selectedPlayer){
-        if (Game.currentKillWolf != SORCERER)
+        if (Game.currentKillWolf != Roles.SORCERER)
         selectedPlayer.silence();
     }
 
