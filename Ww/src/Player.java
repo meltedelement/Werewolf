@@ -100,7 +100,7 @@ public class Player {
     }
 
     private void nightActionSorcerer(Player selectedPlayer){
-        if (Game.currentKillWolf != Roles.SORCERER)
+        if (gameObj.getCurrentKillWolf() != Roles.SORCERER)
         selectedPlayer.silence();
     }
 

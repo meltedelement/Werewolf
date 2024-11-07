@@ -14,13 +14,7 @@ public class Game{
     public Game(){
     }
     
-    public static ArrayList<Player> playersCreate(String[] arrayIn){    //Turn an array of players into player objects using their names
-        ArrayList<Player> players = new ArrayList<Player>();
-        for (String x : arrayIn){
-            players.add(new Player(x));
-        }
-        return(players);
-    }
+  
 
     public Player playerPick(){  // A placeholder function to allow a player to be selected in command line until i have a frontend
         Scanner scan = new Scanner(System.in);
@@ -37,6 +31,13 @@ public class Game{
             if (x.getAttacked() && ! x.getDefended()){
                 x.kill();
             }
+        }
+    }
+
+    public void gameStart(){
+        boolean finish = false;
+        while (finish != true){
+
         }
     }
 

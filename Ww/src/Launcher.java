@@ -3,19 +3,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.management.relation.Role;
 public class Launcher {
     
     public ArrayList<Player> players;
-    public Launcher(){
-        Game.playersCreate(TakeInPlayers());
 
+    Map<Player, Roles> playerRoleMap = new HashMap<>();
+
+
+    public Launcher(){
+        playersCreate(TakeInPlayers());
+        assignPlayersToRoles();
     }
     public static void main(String[] args) throws Exception {
         
     }
 
-    private static String[] TakeInPlayers(){
+    public ArrayList<Player> playersCreate(String[] arrayIn){    //Turn an array of players into player objects using their names
+        ArrayList<Player> players = new ArrayList<Player>();
+        for (String x : arrayIn){
+            players.add(new Player(x));
+        }
+        return(players);
+    }
+
+    private String[] TakeInPlayers(){
         Scanner scanner = new Scanner(System.in);        
 
         ArrayList<String> playerNames = new ArrayList<String>();
@@ -31,7 +42,6 @@ public class Launcher {
     }
 
 public Map<Player, Roles> assignPlayersToRoles() {
-        Map<Player, Roles> playerRoleMap = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
 
         for (Roles role : Roles.values()) {
