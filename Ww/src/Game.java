@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Game{
     private int nightNum;
     private int aliveCount;
+    private Roles currentKillWolf;
     
     public Game(){
 
@@ -27,6 +28,8 @@ public class Game{
         System.out.println("Enter the number of the selected player");
         return(newObj.players.get(Integer.valueOf(scan.nextLine())));   //Get the player object indicated by the index input by the user
     }
+
+
 
     
 

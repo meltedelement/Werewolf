@@ -5,16 +5,15 @@ public class Player {
     private boolean attacked = false;
     private boolean defended = false;
     private boolean silenced = false;
+    private boolean doused = false;
     Game gameObj = new Game();
 
 
     public Player(String name){
         this.name = name;
-
     }
 
     public static void main(String[] args){
-
     }
 
     public String getName(){
@@ -23,6 +22,10 @@ public class Player {
 
     private void setRole(Roles roleIn){
         this.role = roleIn;
+    }
+
+    public Roles getRole(){
+        return this.role;
     }
 
     private void attack(){
@@ -40,40 +43,54 @@ public class Player {
     private void silence(){
         this.silenced = true;
     }
-    private Player pick(){
-        Player selectedPlayer = gameObj.playerPick();
-        return (selectedPlayer);
+    private void douse(){
+        this.doused = true;
     }
 
 
 
 
-    private void switchNightAction(){
+
+    private void performNightAction(){
+        
+        // Performing
+        // Selected
+        Player performingPlayer = this;
+        Player selectedPlayer = gameObj.playerPick();
+        if (selectedPlayer.getRole() == Roles.ARSONIST){
+            this.douse();
+        }
+
+        else if (selectedPlayer.getRole() == Roles.VETERAN){
+            this.kill();
+        }
         switch (this.role) {
             case WEREWOLF:
-
+                nightActionWerewolf(selectedPlayer);
                 break;
         
             case BODYGUARD:
-                Player selectedPlayer = gameObj.playerPick();
+                nightActionBodyguard(selectedPlayer);
+
             default:
                 break;
         }
     }
 
-    private void nightActionWerewolf(){
-        pick().attack();
+    private void nightActionWerewolf(Player selectedPlayer){
+        selectedPlayer.attack();
     }
 
-    private void nightActionBodyguard(){
-        pick().defend();
+    private void nightActionBodyguard(Player selectedPlayer){
+        selectedPlayer.defend();
     }
 
     private void nightActionVillager(){
     }
 
-    private void nightActionSorcerer(){
-        pick().silence();
+    private void nightActionSorcerer(Player selectedPlayer){
+        if (Game.currentKillWolf != SORCERER)
+        selectedPlayer.silence();
     }
 
 }

@@ -1,5 +1,8 @@
 public enum Roles {
         WEREWOLF,
         VILLAGER,
-        BODYGUARD
+        BODYGUARD,
+        ARSONIST,
+        VETERAN,
+        SORCERER
 }
