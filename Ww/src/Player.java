@@ -6,6 +6,7 @@ public class Player {
     private boolean defended = false;
     private boolean silenced = false;
     private boolean doused = false;
+    
 
     public Game gameObj = new Game();
 
@@ -37,6 +38,10 @@ public class Player {
 
     public boolean getDefended(){
         return(defended);
+    }
+
+    public boolean getAlive(){
+        return(alive);
     }
 
     private void attack(){
