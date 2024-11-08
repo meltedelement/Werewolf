@@ -20,7 +20,7 @@ public class Player {
 
 
 
-    private void setRole(Roles roleIn){
+    public void setRole(Roles roleIn){
         this.role = roleIn;
     }
 
@@ -67,7 +67,7 @@ public class Player {
 
 
 
-    private void performNightAction(){
+    public void performNightAction(){
         
         // Performing
         // Selected

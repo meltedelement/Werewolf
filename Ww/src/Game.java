@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -44,11 +45,18 @@ public class Game{
         }
     }
 
-    public void dayActions(){
-
+    public void nightActions(){
+        Roles[] nightOrder = {Roles.WEREWOLF, Roles.SORCERER, Roles.BODYGUARD, Roles.SEER, Roles.ARSONIST};
+        for (Roles role : nightOrder){
+            for(Player player : launcherObj.players){
+                if (player.getRole() == role){
+                    player.performNightAction();
+                }
+            }
+        }
     }
 
-    public void nightActions(){
+    public void dayActions(){
         
     }
 

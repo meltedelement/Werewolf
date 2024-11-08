@@ -3,16 +3,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.management.relation.Role;
+
 public class Launcher {
     
     public ArrayList<Player> players;
-
-    Map<Player, Roles> playerRoleMap = new HashMap<>();
-
-
+    
     public Launcher(){
+        assignRolesToPlayers();
         playersCreate(TakeInPlayers());
-        assignPlayersToRoles();
     }
     public static void main(String[] args) throws Exception {
         
@@ -41,28 +40,19 @@ public class Launcher {
         return(playerNamesArray);
     }
 
-public Map<Player, Roles> assignPlayersToRoles() {
+public void assignRolesToPlayers() {
         Scanner scanner = new Scanner(System.in);
-
-        for (Roles role : Roles.values()) {
-            System.out.println("Assign a player for the role: " + role.name());
-            System.out.println("Available players:");
-            
-            for (int i = 0; i < players.size(); i++) {
-                System.out.println(i + ": " + players.get(i).getName());
+        for (Player x : players){
+            System.out.println(x);
+            int count = 1;
+            for (Roles y : Roles.values()){
+                System.out.println(y);
+                System.out.println(count);
+                count++;
             }
-            
-            System.out.print("Enter player number to assign to " + role.name() + " or -1 to skip: ");
-            int playerIndex = scanner.nextInt();
-
-            if (playerIndex >= 0 && playerIndex < players.size()) {
-                playerRoleMap.put(players.get(playerIndex), role);
-                players.remove(playerIndex); // Remove assigned player to prevent duplicates
-            }
+            x.setRole(Roles.values()[scanner.nextInt()]);
         }
-
         scanner.close();
-        return playerRoleMap;
     }
 }
 
