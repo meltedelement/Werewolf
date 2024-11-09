@@ -8,4 +8,6 @@ public enum Roles {
         ARSONIST,
         VETERAN,
         SEER,
+        LYCAN,
+        DOPPLEGANGER
 }

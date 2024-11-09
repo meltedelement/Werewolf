@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -7,7 +8,6 @@ public class Game{
     
     private int nightNum = 0;
     private int aliveCount;
-    private Roles currentKillWolf;
 
 
     public enum GameStates{
@@ -19,16 +19,22 @@ public class Game{
 
     public static void main(){
         Game Gaming = new Game();
-        Launcher LauncherGame = new Launcher();
-        Gaming.gameStart(LauncherGame);
-
-    }
-    public Roles getCurrentKillWolf(){
-        return(currentKillWolf);
+        Gaming.gameStart();
     }
 
 
+    public void getCurrentKillWolf(){
+        Roles[] wolfKillPriority = {Roles.WEREWOLF, Roles.MISTWOLF, Roles.CUBWOLF, Roles.SORCERER};
+        boolean wolfSelected = false;
+        for (Roles x : wolfKillPriority){
+            for (Player y : Launcher.players){
+                if (y.getRole() == x && ! wolfSelected){
+                    y.setKillWolf();
+                }
 
+            }
+        }
+    }
     
 
 
@@ -49,14 +55,19 @@ public class Game{
             if (x.getAttacked() && ! x.getDefended()){
                 x.kill();
             }
+            if (!Arrays.asList(Player.basicDefenseRoles).contains(x.getRole())){
+                x.unDefend();
+
+            }
         }
     }
 
     public void nightActions(){
+        
         Roles[] nightOrder = {Roles.WEREWOLF, Roles.SORCERER, Roles.BODYGUARD, Roles.SEER, Roles.ARSONIST};
         for (Roles role : nightOrder){
             for(Player player : Launcher.players){
-                if (player.getRole() == role){
+                if (! player.skipVisit && player.getRole() == role){
                     player.performNightAction();
                 }
             }
@@ -68,7 +79,7 @@ public class Game{
     }
 
 
-    public void gameStart(Launcher LauncherGame){
+    public void gameStart(){
         GameStates gameState = GameStates.NIGHT;
         while (gameState != GameStates.FINISHED){
             switch (gameState) {

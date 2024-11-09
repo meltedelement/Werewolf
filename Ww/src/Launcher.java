@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -44,7 +45,7 @@ public class Launcher {
         Scanner scanner = new Scanner(System.in);
         for (Player x : playersIn){
             System.out.println(x);
-            int count = 1;
+            int count = 0;
             for (Roles y : Roles.values()){
                 System.out.println(count);
                 System.out.println(y);
@@ -52,7 +53,7 @@ public class Launcher {
             }
             int userIntIn = Integer.parseInt(scanner.nextLine());
             x.setRole(Roles.values()[userIntIn]);
-            System.out.println("Made it out of for");
+
 
         }
         scanner.close();
