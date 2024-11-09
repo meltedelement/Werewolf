@@ -6,14 +6,16 @@ import java.util.Scanner;
 import javax.management.relation.Role;
 
 public class Launcher {
-    
-    public ArrayList<Player> players;
+
+
+
     
     public Launcher(){
         assignRolesToPlayers();
-        playersCreate(TakeInPlayers());
     }
     public static void main(String[] args) throws Exception {
+        Game gameObj = new Game();
+        gameObj.gameStart();
         
     }
 
@@ -42,7 +44,7 @@ public class Launcher {
 
 public void assignRolesToPlayers() {
         Scanner scanner = new Scanner(System.in);
-        for (Player x : players){
+        for (Player x : playersCreate(TakeInPlayers())){
             System.out.println(x);
             int count = 1;
             for (Roles y : Roles.values()){
@@ -54,6 +56,8 @@ public void assignRolesToPlayers() {
         }
         scanner.close();
     }
+
+
 }
 
 

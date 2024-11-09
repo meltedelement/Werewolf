@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Game{
-    private int nightNum;
+    private int nightNum = 0;
     private int aliveCount;
     private Roles currentKillWolf;
     Launcher launcherObj = new Launcher();
@@ -20,10 +20,7 @@ public class Game{
         return(currentKillWolf);
     }
 
-    public Game(){
-    }
-    
-  
+
 
     public Player playerPick(){  // A placeholder function to allow a player to be selected in command line until i have a frontend
         Scanner scan = new Scanner(System.in);
@@ -67,10 +64,14 @@ public class Game{
             switch (gameState) {
                 case DAY:
                     dayActions();
+                    gameState = GameStates.NIGHT;
                     break;
                 
                 case NIGHT:
                     nightActions();
+                    nightNum += 1;
+                    processDeaths();
+                    gameState = GameStates.DAY;
                     break;
                 default:
                     break;
