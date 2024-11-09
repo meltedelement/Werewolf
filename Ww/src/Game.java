@@ -9,6 +9,7 @@ public class Game{
     private Roles currentKillWolf;
     Launcher launcherObj = new Launcher();
 
+
     public enum GameStates{
     DAY,
     NIGHT,
@@ -16,6 +17,9 @@ public class Game{
     FINISHED
     }
 
+    public static void main(){
+
+    }
     public Roles getCurrentKillWolf(){
         return(currentKillWolf);
     }

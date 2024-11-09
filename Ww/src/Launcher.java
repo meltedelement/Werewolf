@@ -6,20 +6,20 @@ import java.util.Scanner;
 import javax.management.relation.Role;
 
 public class Launcher {
+    ArrayList<Player> players = assignRolesToPlayers(playersCreate(takeInPlayers()));
 
 
 
-    
     public Launcher(){
-        assignRolesToPlayers();
-    }
-    public static void main(String[] args) throws Exception {
-        Game gameObj = new Game();
-        gameObj.gameStart();
-        
+
+
     }
 
-    public ArrayList<Player> playersCreate(String[] arrayIn){    //Turn an array of players into player objects using their names
+    public static void main(String[] args) throws Exception {
+
+    }
+
+    public static ArrayList<Player> playersCreate(String[] arrayIn){    //Turn an array of players into player objects using their names
         ArrayList<Player> players = new ArrayList<Player>();
         for (String x : arrayIn){
             players.add(new Player(x));
@@ -27,7 +27,7 @@ public class Launcher {
         return(players);
     }
 
-    private String[] TakeInPlayers(){
+    private static String[] takeInPlayers(){
         Scanner scanner = new Scanner(System.in);        
 
         ArrayList<String> playerNames = new ArrayList<String>();
@@ -39,12 +39,13 @@ public class Launcher {
             playerNames.add(scanner.nextLine());
         }
         String[] playerNamesArray = playerNames.toArray(new String[0]);
+        scanner.close();
         return(playerNamesArray);
     }
 
-public void assignRolesToPlayers() {
+public static ArrayList<Player> assignRolesToPlayers(ArrayList<Player> playersIn) {
         Scanner scanner = new Scanner(System.in);
-        for (Player x : playersCreate(TakeInPlayers())){
+        for (Player x : playersIn){
             System.out.println(x);
             int count = 1;
             for (Roles y : Roles.values()){
@@ -55,6 +56,7 @@ public void assignRolesToPlayers() {
             x.setRole(Roles.values()[scanner.nextInt()]);
         }
         scanner.close();
+        return(playersIn);
     }
 
 
