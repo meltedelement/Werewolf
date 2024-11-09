@@ -16,7 +16,7 @@ public class Launcher {
     }
 
     public static void main(String[] args) throws Exception {
-        assignRolesToPlayers(players);
+
     }
 
     public static ArrayList<Player> playersCreate(String[] arrayIn){    //Turn an array of players into player objects using their names
@@ -43,7 +43,7 @@ public class Launcher {
         return(playerNamesArray);
     }
 
-public static ArrayList<Player> assignRolesToPlayers(ArrayList<Player> playersIn) {
+public ArrayList<Player> assignRolesToPlayers(ArrayList<Player> playersIn) {
         Scanner scanner = new Scanner(System.in);
         for (Player x : playersIn){
             System.out.println(x);

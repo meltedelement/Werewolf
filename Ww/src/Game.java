@@ -17,6 +17,9 @@ public class Game{
     }
 
     public static void main(){
+        Game Gaming = new Game();
+        Launcher LauncherGame = new Launcher();
+        Gaming.gameStart(LauncherGame);
 
     }
     public Roles getCurrentKillWolf(){
@@ -61,7 +64,8 @@ public class Game{
     }
 
 
-    public void gameStart(){
+    public void gameStart(Launcher LauncherGame){
+        LauncherGame.assignRolesToPlayers(Launcher.players);
         GameStates gameState = GameStates.NIGHT;
         while (gameState != GameStates.FINISHED){
             switch (gameState) {
