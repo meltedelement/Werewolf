@@ -7,7 +7,6 @@ public class Game{
     private int nightNum = 0;
     private int aliveCount;
     private Roles currentKillWolf;
-    Launcher launcherObj = new Launcher();
 
 
     public enum GameStates{
@@ -28,18 +27,18 @@ public class Game{
 
     public Player playerPick(){  // A placeholder function to allow a player to be selected in command line until i have a frontend
         Scanner scan = new Scanner(System.in);
-        for(Player x : launcherObj.players){
+        for(Player x : Launcher.players){
             if (x.getAlive()){
-                System.out.println(launcherObj.players.indexOf(x));
+                System.out.println(Launcher.players.indexOf(x));
                 System.out.println(x.getName());
             }
         }
         System.out.println("Enter the number of the selected player");
-        return(launcherObj.players.get(Integer.valueOf(scan.nextLine())));   //Get the player object indicated by the index input by the user
+        return(Launcher.players.get(Integer.valueOf(scan.nextLine())));   //Get the player object indicated by the index input by the user
     }
 
     public void processDeaths(){
-        for(Player x : launcherObj.players){
+        for(Player x : Launcher.players){
             if (x.getAttacked() && ! x.getDefended()){
                 x.kill();
             }
@@ -49,7 +48,7 @@ public class Game{
     public void nightActions(){
         Roles[] nightOrder = {Roles.WEREWOLF, Roles.SORCERER, Roles.BODYGUARD, Roles.SEER, Roles.ARSONIST};
         for (Roles role : nightOrder){
-            for(Player player : launcherObj.players){
+            for(Player player : Launcher.players){
                 if (player.getRole() == role){
                     player.performNightAction();
                 }

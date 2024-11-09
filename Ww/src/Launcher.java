@@ -6,7 +6,7 @@ import java.util.Scanner;
 import javax.management.relation.Role;
 
 public class Launcher {
-    ArrayList<Player> players = assignRolesToPlayers(playersCreate(takeInPlayers()));
+    public static ArrayList<Player> players = (playersCreate(takeInPlayers()));
 
 
 
@@ -16,7 +16,7 @@ public class Launcher {
     }
 
     public static void main(String[] args) throws Exception {
-
+        assignRolesToPlayers(players);
     }
 
     public static ArrayList<Player> playersCreate(String[] arrayIn){    //Turn an array of players into player objects using their names
@@ -49,11 +49,12 @@ public static ArrayList<Player> assignRolesToPlayers(ArrayList<Player> playersIn
             System.out.println(x);
             int count = 1;
             for (Roles y : Roles.values()){
-                System.out.println(y);
                 System.out.println(count);
+                System.out.println(y);
                 count++;
             }
-            x.setRole(Roles.values()[scanner.nextInt()]);
+            int userIntIn = scanner.nextInt();
+            x.setRole(Roles.values()[userIntIn]);
         }
         scanner.close();
         return(playersIn);
