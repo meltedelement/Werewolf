@@ -7,7 +7,10 @@ public class Player {
     private boolean silenced = false;
     private boolean doused = false;
     
-
+    @Override
+    public String toString() {
+        return name;
+    }
     public Game gameObj = new Game();
 
 

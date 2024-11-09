@@ -6,13 +6,11 @@ import java.util.Scanner;
 import javax.management.relation.Role;
 
 public class Launcher {
-    public static ArrayList<Player> players = (playersCreate(takeInPlayers()));
+    public static ArrayList<Player> players = assignRolesToPlayers(playersCreate(takeInPlayers()));
 
 
 
     public Launcher(){
-
-
     }
 
     public static void main(String[] args) throws Exception {
@@ -39,11 +37,10 @@ public class Launcher {
             playerNames.add(scanner.nextLine());
         }
         String[] playerNamesArray = playerNames.toArray(new String[0]);
-        scanner.close();
         return(playerNamesArray);
     }
 
-public ArrayList<Player> assignRolesToPlayers(ArrayList<Player> playersIn) {
+    public static ArrayList<Player> assignRolesToPlayers(ArrayList<Player> playersIn) {
         Scanner scanner = new Scanner(System.in);
         for (Player x : playersIn){
             System.out.println(x);
@@ -53,8 +50,10 @@ public ArrayList<Player> assignRolesToPlayers(ArrayList<Player> playersIn) {
                 System.out.println(y);
                 count++;
             }
-            int userIntIn = scanner.nextInt();
+            int userIntIn = Integer.parseInt(scanner.nextLine());
             x.setRole(Roles.values()[userIntIn]);
+            System.out.println("Made it out of for");
+
         }
         scanner.close();
         return(playersIn);
